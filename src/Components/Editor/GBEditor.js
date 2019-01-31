@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor'
-import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin'
+import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin'
+import createImagePlugin from 'draft-js-image-plugin'
+
 import editorStyles from './GBEditor.module.css'
+import buttonStyles from './ToolbarStyles/buttonStyles.css'
+import toolbarStyles from './ToolbarStyles/toolbarStyles.css'
 import {
 	ItalicButton,
 	BoldButton,
@@ -12,13 +16,16 @@ import {
 	BlockquoteButton,
 	CodeBlockButton
 } from 'draft-js-buttons'
-import 'draft-js-inline-toolbar-plugin/lib/plugin.css'
-
+import 'draft-js-static-toolbar-plugin/lib/plugin.css'
 import HeadlinesButton from './HeadlinesButton/HeadlinesButton'
+import ImageButton from './ImageButton/ImageButton'
 
-const inlineToolbarPlugin = createInlineToolbarPlugin()
-const { InlineToolbar } = inlineToolbarPlugin
-const plugins = [inlineToolbarPlugin]
+const toolbarPlugin = createToolbarPlugin({
+	theme: { buttonStyles, toolbarStyles }
+})
+const { Toolbar } = toolbarPlugin
+const imagePlugin = createImagePlugin()
+const plugins = [toolbarPlugin, imagePlugin]
 const text = 'In this editor a toolbar shows up once you select part of the text …'
 
 export default class GBEditor extends Component {
@@ -47,7 +54,7 @@ export default class GBEditor extends Component {
 						this.editor = element
 					}}
 				/>
-				<InlineToolbar>
+				<Toolbar>
 					{externalProps => (
 						<>
 							<BoldButton {...externalProps} />
@@ -56,13 +63,14 @@ export default class GBEditor extends Component {
 							<CodeButton {...externalProps} />
 							<Separator {...externalProps} />
 							<HeadlinesButton {...externalProps} />
+							<ImageButton {...externalProps} />
 							<UnorderedListButton {...externalProps} />
 							<OrderedListButton {...externalProps} />
 							<BlockquoteButton {...externalProps} />
 							<CodeBlockButton {...externalProps} />
 						</>
 					)}
-				</InlineToolbar>
+				</Toolbar>
 			</div>
 		)
 	}

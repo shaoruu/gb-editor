@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GBEditor from './Components/Editor/GBEditor'
+import GBEditor from './components/Editor/GBEditor'
 
 class App extends Component {
 	render() {
