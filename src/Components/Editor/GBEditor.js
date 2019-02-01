@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import Editor, {
-	createEditorStateWithText,
-	composeDecorators
-} from 'draft-js-plugins-editor'
+import Editor, { composeDecorators } from 'draft-js-plugins-editor'
 import Prism from 'prismjs'
-import { EditorState } from 'draft-js'
+import { EditorState, convertToRaw } from 'draft-js'
 import CodeUtils from 'draft-js-code'
 import createEmojiPlugin from 'draft-js-emoji-plugin'
 import createPrismPlugin from 'draft-js-prism-plugin'
@@ -80,11 +77,10 @@ const plugins = [
 	codeEditorPlugin,
 	hashtagPlugin
 ]
-const text = 'In this editor a toolbar shows up once you select part of the text …'
 
 export default class GBEditor extends Component {
 	state = {
-		editorState: createEditorStateWithText(text)
+		editorState: EditorState.createEmpty()
 	}
 
 	onChange = editorState => {
@@ -159,6 +155,18 @@ export default class GBEditor extends Component {
 						</>
 					)}
 				</Toolbar>
+
+				{/* <button
+					onClick={() => {
+						console.log(
+							JSON.stringify(
+								convertToRaw(this.state.editorState.getCurrentContent())
+							)
+						)
+					}}
+				>
+					print raw
+				</button> */}
 
 				<AlignmentTool />
 				<EmojiSuggestions />
