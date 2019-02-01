@@ -1,11 +1,12 @@
 .input {
+	box-sizing: border-box;
 	height: 34px;
-	width: 98%;
 	padding: 0 12px;
 	font-size: 15px;
 	font-family: inherit;
 	background-color: transparent;
 	border: none;
+	width: 100%;
 	color: #ddd;
 }
 

@@ -60,7 +60,7 @@ export default class AddImageForm extends Component {
 				onBlur={this.onClose}
 				onChange={this.onChange}
 				onKeyDown={this.onKeyDown}
-				placeholder="Enter image URL and press enter"
+				placeholder="Enter image URL"
 				ref={this.onRef}
 				type="text"
 				value={url}

@@ -3,11 +3,7 @@ import GBEditor from './components/Editor/GBEditor'
 
 class App extends Component {
 	render() {
-		return (
-			<div>
-				<GBEditor />
-			</div>
-		)
+		return <GBEditor />
 	}
 }
 
